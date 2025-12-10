@@ -5,7 +5,37 @@
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/streamlit-1.50.0-red)](https://streamlit.io/)
 
+## 🌟 Project Introduction
+
 A comprehensive analysis of **user reviews from UK banking apps** collected via the **Google Play Store**, designed to uncover insights about customer satisfaction, app strengths, and areas for improvement across different banks.
+
+This project represents a cutting-edge approach to understanding digital banking experiences through the lens of user feedback. By analyzing over 800,000 reviews from six major UK banking apps, we provide data-driven insights that can help financial institutions improve their mobile banking services, enhance customer satisfaction, and stay competitive in the rapidly evolving fintech landscape.
+
+### 🎯 Key Objectives
+
+- **Understand customer sentiment**: Analyze what users love and hate about their banking apps
+- **Identify trends and patterns**: Discover common themes across different banks and time periods
+- **Compare traditional vs digital banks**: Highlight differences between established banks and fintech disruptors
+- **Provide actionable insights**: Offer concrete recommendations for improving banking app experiences
+- **Enable data exploration**: Create interactive tools for stakeholders to explore the data themselves
+
+### 💡 Why This Matters
+
+In today's digital-first banking environment, mobile apps have become the primary interface between customers and their financial institutions. This analysis helps:
+
+- **Banks** understand their customers better and prioritize app improvements
+- **Fintech companies** identify opportunities in the competitive landscape
+- **Consumers** make informed choices about which banking apps best suit their needs
+- **Regulators** monitor the health of digital banking services
+- **Researchers** access a comprehensive dataset of real-world banking app feedback
+
+---
+
+## 🏦 Banking App Reviews — UK Market
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.50.0-red)](https://streamlit.io/)
 
 ---
 
@@ -40,14 +70,14 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 **Review Distribution by App:**
 
-| App Name | Review Count | Percentage |
-|----------|--------------|------------|
-| Barclays | 268,074      | 32.4%      |
-| Revolut  | 265,788      | 32.1%      |
-| Lloyds   | 150,762      | 18.2%      |
-| Santander| 80,171       | 9.7%       |
-| HSBC     | 39,524       | 4.8%       |
-| Monzo    | 22,586       | 2.7%       |
+| App Name   | Review Count | Percentage |
+|------------|--------------|------------|
+| Barclays   | 268,074      | 32.4%      |
+| Revolut    | 265,788      | 32.1%      |
+| Lloyds     | 150,762      | 18.2%      |
+| Santander  | 80,171       | 9.7%       |
+| HSBC       | 39,524       | 4.8%       |
+| Monzo      | 22,586       | 2.7%       |
 
 **Key Observations:**
 
@@ -132,14 +162,14 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 **Final Topics (20 topics with custom labels):**
 
-| Topic ID | Label | Count | % | Keywords |
-|----------|-------|-------|---|----------|
-| 2        | Money Management | 15,273 | 7.0% | finances easy, manage account, navigate quick |
-| 7        | Travel & FX | 10,389 | 4.8% | try log, freezing, logon |
-| 8        | Cards | 6,310 | 2.9% | euro, travels, good rates |
-| 10       | Compatibility & Launch Issues | 4,401 | 2.0% | version better, install use |
-| 15       | Updates | 2,092 | 1.0% | balance widget, clear information |
-| 19       | Referral Program | 559 | 0.3% | saves going, use save |
+| Topic ID | Label                  | Count   | %   | Keywords                          |
+|----------|------------------------|---------|-----|-----------------------------------|
+| 2        | Money Management       | 15,273  | 7.0%| finances easy, manage account, navigate quick |
+| 7        | Travel & FX            | 10,389  | 4.8%| try log, freezing, logon          |
+| 8        | Cards                  | 6,310   | 2.9%| euro, travels, good rates         |
+| 10       | Compatibility & Launch Issues | 4,401 | 2.0%| version better, install use       |
+| 15       | Updates                | 2,092   | 1.0%| balance widget, clear information |
+| 19       | Referral Program       | 559     | 0.3%| saves going, use save             |
 
 **Macro Categories (5 groups):**
 
@@ -160,35 +190,35 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ## 🧾 Project Structure
 
-```text
+```
 📁 Digital-Banking-Dashboard/
-├── assets/                  
-│   ├── dfs_pipeline/        
-│   ├── intermediate_dfs/    
-│   ├── models/              
-│   │   ├── bertopic/        
-│   │   └── lda/             
-│   ├── df_monthly.parquet   
-│   └── df_topic.parquet    
-├── notebooks/               
-│   ├── 1. Data Collection.ipynb        
-│   ├── 2. Preprocessing and EDA.ipynb  
-│   ├── 3. Sentiment Analysis.ipynb     
-│   ├── 4.1. LDA Modelling.ipynb        
-│   └── 4.2. BERTopic Modelling.ipynb   
-├── reviews_core/            
-│   ├── __init__.py          
-│   ├── scraper.py           
-│   ├── cleaning.py          
-│   ├── apply_bertopic.py    
+├── assets/
+│   ├── dfs_pipeline/
+│   ├── intermediate_dfs/
+│   ├── models/
+│   │   ├── bertopic/
+│   │   └── lda/
+│   ├── df_monthly.parquet
+│   └── df_topic.parquet
+├── notebooks/
+│   ├── 1. Data Collection.ipynb
+│   ├── 2. Preprocessing and EDA.ipynb
+│   ├── 3. Sentiment Analysis.ipynb
+│   ├── 4.1. LDA Modelling.ipynb
+│   └── 4.2. BERTopic Modelling.ipynb
+├── reviews_core/
+│   ├── __init__.py
+│   ├── scraper.py
+│   ├── cleaning.py
+│   ├── apply_bertopic.py
 │   ├── update_final_dataframes.py
-│   ├── word_cloud.py        
-│   └── get_sample.py        
-├── app.py                   
-├── run_pipeline.py          
-├── requirements.txt         
-└── README.md                
-````
+│   ├── word_cloud.py
+│   └── get_sample.py
+├── app.py
+├── run_pipeline.py
+├── requirements.txt
+└── README.md
+```
 
 ---
 
