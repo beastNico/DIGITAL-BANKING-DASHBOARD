@@ -1,0 +1,117 @@
+# ---- Jupyter ----
+.ipynb_checkpoints
+.ipynb_checkpoints/
+.ipynb_checkpoints/** */
+
+# ---- Virtual environments ----
+.env
+.venv/
+env/
+venv/
+ENV/
+*.egg-info/
+**/venv/
+**/.venv/
+**/env/
+banking_venv/
+**/ENV/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.user
+
+# ---- intermediate dfs and model parameters ----
+assets/dfs_pipeline/** */
+assets/dfs_pipeline/
+assets/dfs_pipeline.backup/** */
+assets/dfs_pipeline.backup/
+assets/intermediate_dfs/** */
+assets/intermediate_dfs/
+assets/models/
+assets/models/** */
+
+# ---- Streamlit secrets ----
+.streamlit/secrets.toml
+
+# ---- Debug files ----
+debug_*
+
+# ---- Logs ----
+*.log
+*.log.*
+log/
+logs/
+
+# ---- Databases ----
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.sql
+
+# ---- Build and distribution ----
+build/
+dist/
+*.egg
+*.egg-info/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ---- Test and coverage ----
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.coverage
+*.cover
+*.py,cover
+.tox/
+.nox/
+.pytest_cache/
+cover/
+htmlcov/
+*.prof
+
+# ---- Documentation ----
+_darcs/
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.ind
+*.lof
+*.log
+*.lol
+*.lot
+*.out
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.nav
+*.snm
+*.vrb

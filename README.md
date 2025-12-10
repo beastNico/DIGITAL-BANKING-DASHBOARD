@@ -1,0 +1,293 @@
+````markdown
+# 🏦 Banking App Reviews — UK Market
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.50.0-red)](https://streamlit.io/)
+
+A comprehensive analysis of **user reviews from UK banking apps** collected via the **Google Play Store**, designed to uncover insights about customer satisfaction, app strengths, and areas for improvement across different banks.
+
+---
+
+## 📊 Project Overview
+
+This project provides a **data-driven analysis** of UK banking app reviews with a focus on:
+
+- **Average user ratings** and trends over time
+- **Volume of reviews** per app and per period
+- **Key topics** discussed in positive and negative reviews
+- **Comparative analysis** across banking apps
+- **Interactive visualizations** for exploring insights
+
+The methodology combines **text analytics**, **topic modeling**, and **interactive dashboards** to identify drivers of user perceptions of digital banking services in the UK.
+
+---
+
+## 🔍 Data Source
+
+- **Source:** Google Play Store reviews  
+- **Scope:** Six UK banking apps — Barclays, HSBC, Lloyds, Monzo, Revolut, Santander  
+- **Collection Method:** Automated scraping using `google_play_scraper`  
+- **Total Reviews Collected:** 826,905 unique reviews (initial scrape)  
+- **Time Period:** Early history through December 2025  
+- **Fields Collected:** `app_name`, `score`, `review_text`, `review_date`, `thumbs_up`, `reply`, `reply_date`, `app_version`
+
+---
+
+## 🧠 Methodology & Key Insights
+
+### 1. Data Collection & Characteristics
+
+**Review Distribution by App:**
+
+| App Name | Review Count | Percentage |
+|----------|--------------|------------|
+| Barclays | 268,074      | 32.4%      |
+| Revolut  | 265,788      | 32.1%      |
+| Lloyds   | 150,762      | 18.2%      |
+| Santander| 80,171       | 9.7%       |
+| HSBC     | 39,524       | 4.8%       |
+| Monzo    | 22,586       | 2.7%       |
+
+**Key Observations:**
+
+- **Polarized Reviews:** 72.7% of reviews are 5-star; 12.2% are 1-star.
+- **Engagement Paradox:** Negative reviews (1–2 stars) receive ~10× more thumbs-up than positive reviews.
+- **Temporal Patterns:** Review volume peaked in 2019, decreased during 2020–2023, then rebounded in 2024.
+- **Bank Response Rates:** Vary by bank (HSBC 54%, Lloyds 3.5%), with digital banks responding faster.
+
+---
+
+### 2. Data Processing Pipeline
+
+**Final Clean Dataset:** 660,848 reviews (after cleaning and filtering)
+
+**Cleaning Steps:**
+
+- Text normalization (lowercase, URL removal, whitespace standardization)
+- Parsing app versions (1,853 unique versions identified)
+- Removing inconsistent sentiment-score reviews (422,533 removed)
+- Filtering short reviews (minimum 4 words for modeling)
+
+---
+
+### 3. Sentiment Analysis (VADER)
+
+- **Consistency:** ~94% of reviews have sentiment consistent with numeric score
+- **Positive Sentiment Leaders:** Lloyds (83%), Barclays (80%)
+- **Highest Negative Sentiment:** HSBC (24%)
+- **Reply Sentiment:** Negative reply sentiment often indicates acknowledgment of problems rather than rudeness
+- **Digital vs Traditional Banks:** Digital banks (Revolut, Monzo) have more balanced sentiment distributions
+
+---
+
+### 4. Topic Modeling Approaches
+
+#### LDA Modeling
+
+**General Model (7 topics):**
+
+1. Cards & Payments  
+2. Customer Service  
+3. Updates & Access  
+4. Mobile Payments  
+5. Security & Travel  
+6. Account Management  
+7. Usability & Transfers
+
+**Negative Reviews Model (6 topics):**
+
+1. Login & Security  
+2. Customer Support  
+3. Technical Issues  
+4. Payments & Cards  
+5. Interface Problems  
+6. Mobile Payment Issues
+
+**Positive Reviews Model (6 topics):**
+
+1. Currency & Management  
+2. Transfers & Payments  
+3. Support & Updates  
+4. Security & Service  
+5. Features & Travel  
+6. Usability
+
+**Insights from LDA:**
+
+- Traditional banks: Struggle with core functionality and technical stability (46–65% negative reviews)
+- Digital banks: Criticized for core features and fees (38–44% negative reviews)
+- Investment features consistently praised (19–25% positive reviews)
+
+#### BERTopic Modeling
+
+**Dataset:** 391,346 reviews after cleaning
+
+**Model Configuration:**
+
+- **Embeddings:** Sentence-BERT (`all-MiniLM-L6-v2`)  
+- **Dimensionality Reduction:** UMAP (n_components=5, min_dist=0.1)  
+- **Clustering:** HDBSCAN (min_cluster_size=150)  
+- **Training Time:** ~85 minutes (61 min embeddings, 24 min clustering)
+
+**Final Topics (20 topics with custom labels):**
+
+| Topic ID | Label | Count | % | Keywords |
+|----------|-------|-------|---|----------|
+| 2        | Money Management | 15,273 | 7.0% | finances easy, manage account, navigate quick |
+| 7        | Travel & FX | 10,389 | 4.8% | try log, freezing, logon |
+| 8        | Cards | 6,310 | 2.9% | euro, travels, good rates |
+| 10       | Compatibility & Launch Issues | 4,401 | 2.0% | version better, install use |
+| 15       | Updates | 2,092 | 1.0% | balance widget, clear information |
+| 19       | Referral Program | 559 | 0.3% | saves going, use save |
+
+**Macro Categories (5 groups):**
+
+1. User Experience (27.9%)  
+2. Products (8.8%)  
+3. Customer Service (5.0%)  
+4. Performance (13.3%)  
+5. Core Banking (34.7%)
+
+**Advantages of BERTopic over LDA:**
+
+- Handles short text effectively
+- More coherent topic clusters with contextual embeddings
+- Outlier reduction (from 40.1% to 22.9%)
+- Balanced topic distribution
+
+---
+
+## 🧾 Project Structure
+
+```text
+📁 Digital-Banking-Dashboard/
+├── assets/                  
+│   ├── dfs_pipeline/        
+│   ├── intermediate_dfs/    
+│   ├── models/              
+│   │   ├── bertopic/        
+│   │   └── lda/             
+│   ├── df_monthly.parquet   
+│   └── df_topic.parquet    
+├── notebooks/               
+│   ├── 1. Data Collection.ipynb        
+│   ├── 2. Preprocessing and EDA.ipynb  
+│   ├── 3. Sentiment Analysis.ipynb     
+│   ├── 4.1. LDA Modelling.ipynb        
+│   └── 4.2. BERTopic Modelling.ipynb   
+├── reviews_core/            
+│   ├── __init__.py          
+│   ├── scraper.py           
+│   ├── cleaning.py          
+│   ├── apply_bertopic.py    
+│   ├── update_final_dataframes.py
+│   ├── word_cloud.py        
+│   └── get_sample.py        
+├── app.py                   
+├── run_pipeline.py          
+├── requirements.txt         
+└── README.md                
+````
+
+---
+
+## 🎯 Installation
+
+```bash
+git clone https://github.com/yourusername/banking-app-reviews.git
+cd banking-app-reviews
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**Environment variables (optional for AI insights):**
+
+```toml
+# .streamlit/secrets.toml
+OPENAI_API_KEY = "your-api-key-here"
+```
+
+---
+
+## 🎛️ Usage
+
+### Run Dashboard
+
+```bash
+streamlit run app.py
+```
+
+### Run Pipeline
+
+```bash
+python run_pipeline.py
+```
+
+**Key Features:**
+
+1. App Ratings: Trend analysis, filter by bank/time, interactive charts
+2. Key Topics: Topic distributions, positive vs negative reviews, PDF reports
+3. Search Reviews: Advanced search, word clouds, sentiment highlighting, CSV export
+4. AI Analyst: Contextual AI insights based on reviews (optional)
+
+---
+
+## 🔧 Data Pipeline Modules
+
+1. **`scraper.py`** – Fetch latest Google Play reviews
+2. **`cleaning.py`** – Normalize and clean reviews
+3. **`apply_bertopic.py`** – Assign BERTopic topics to reviews
+4. **`update_final_dataframes.py`** – Update monthly and topic data
+5. **`word_cloud.py`** – Generate word clouds for visualization
+6. **`get_sample.py`** – Sample representative reviews
+
+---
+
+## 📊 Key Business Insights
+
+### Pain Points
+
+* Traditional banks: login, stability, basic usability
+* Digital banks: core features, fees
+* Universal: login failures, payment issues
+* Security: authentication & account access
+
+### Praise Patterns
+
+* Feature-driven satisfaction
+* Investment features highly appreciated
+* Positive experiences are holistic
+* Banks excel in different areas (e.g., Revolut: travel, HSBC: transactions)
+
+### Strategic Implications
+
+* Improve technical reliability for traditional banks
+* Perfect core payment functions for digital banks
+* Focus on investments and security for all banks
+* Customer service response optimization
+
+---
+
+## 🔗 Related Projects
+
+* [google-play-scraper](https://github.com/JoMingyu/google-play-scraper)
+* [BERTopic](https://github.com/MaartenGr/BERTopic)
+* [Streamlit](https://streamlit.io/)
+* [VADER Sentiment](https://github.com/cjhutto/vaderSentiment)
+* [UMAP](https://github.com/lmcinnes/umap)
+
+---
+
+## 📋 Changelog
+
+### v1.0.0
+
+* 826,905 raw reviews collected
+* Data cleaning and preprocessing implemented
+* LDA and BERTopic modeling applied
+* Interactive Streamlit dashboard with 4 main views
+* Optional OpenAI-powered insights integrated
+
+```
