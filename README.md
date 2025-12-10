@@ -1,6 +1,5 @@
 # 🏦 Banking App Reviews — UK Market
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/streamlit-1.50.0-red)](https://streamlit.io/)
 
@@ -204,42 +203,6 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ```
 
----
-
-## 🎯 Installation
-
-```bash
-git clone https://github.com/beastNico
-DIGITAL-BANKING-DASHBOARD.git
-cd banking-app-reviews
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-**Environment variables (optional for AI insights):**
-
-```toml
-# .streamlit/secrets.toml
-OPENAI_API_KEY = "your-api-key-here"
-```
-
----
-
-## 🎛️ Usage
-
-### Run Dashboard
-
-```bash
-streamlit run app.py
-```
-
-### Run Pipeline
-
-```bash
-python run_pipeline.py
-```
-
 **Key Features:**
 
 1. App Ratings: Trend analysis, filter by bank/time, interactive charts
@@ -282,3 +245,51 @@ python run_pipeline.py
 * Perfect core payment functions for digital banks
 * Focus on investments and security for all banks
 * Customer service response optimization
+
+
+---
+
+## 🎯 Installation
+
+```bash
+git clone https://github.com/beastNico/DIGITAL-BANKING-DASHBOARD.git
+```
+
+```
+cd DIGITAL-BANKING-DASHBOARD
+```
+
+```
+python -m venv venv
+```
+
+```
+source venv/bin/activate  # Windows: venv\Scripts\activate
+```
+
+```
+pip install -r requirements.txt
+```
+
+**Environment variables (optional for AI insights):**
+
+```toml
+# .streamlit/secrets.toml
+OPENAI_API_KEY = "your-api-key-here"
+```
+
+---
+
+## 🎛️ Usage
+
+### Run Dashboard
+
+```bash
+streamlit run app.py
+```
+
+### Run Pipeline
+
+```bash
+python run_pipeline.py
+```
