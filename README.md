@@ -1,4 +1,3 @@
-````markdown
 # 🏦 Banking App Reviews — UK Market
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -29,16 +28,6 @@ In today's digital-first banking environment, mobile apps have become the primar
 - **Regulators** monitor the health of digital banking services
 - **Researchers** access a comprehensive dataset of real-world banking app feedback
 
----
-
-## 🏦 Banking App Reviews — UK Market
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/streamlit-1.50.0-red)](https://streamlit.io/)
-
----
-
 ## 📊 Project Overview
 
 This project provides a **data-driven analysis** of UK banking app reviews with a focus on:
@@ -52,6 +41,7 @@ This project provides a **data-driven analysis** of UK banking app reviews with 
 The methodology combines **text analytics**, **topic modeling**, and **interactive dashboards** to identify drivers of user perceptions of digital banking services in the UK.
 
 ---
+
 
 ## 🔍 Data Source
 
@@ -192,32 +182,26 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ```
 📁 Digital-Banking-Dashboard/
-├── assets/
-│   ├── dfs_pipeline/
-│   ├── intermediate_dfs/
-│   ├── models/
-│   │   ├── bertopic/
-│   │   └── lda/
-│   ├── df_monthly.parquet
-│   └── df_topic.parquet
-├── notebooks/
-│   ├── 1. Data Collection.ipynb
-│   ├── 2. Preprocessing and EDA.ipynb
-│   ├── 3. Sentiment Analysis.ipynb
-│   ├── 4.1. LDA Modelling.ipynb
-│   └── 4.2. BERTopic Modelling.ipynb
-├── reviews_core/
-│   ├── __init__.py
-│   ├── scraper.py
-│   ├── cleaning.py
-│   ├── apply_bertopic.py
-│   ├── update_final_dataframes.py
-│   ├── word_cloud.py
-│   └── get_sample.py
-├── app.py
-├── run_pipeline.py
-├── requirements.txt
-└── README.md
+├── assets/                             # Directory for storing data assets and models
+├── notebooks/                          # Jupyter notebooks for analysis
+│   ├── 1. Data Collection.ipynb        # Data scraping and collection
+│   ├── 2. Preprocessing and EDA.ipynb  # Data cleaning and exploratory analysis
+│   ├── 3. Sentiment Analysis.ipynb     # VADER sentiment analysis
+│   ├── 4.1. LDA Modelling.ipynb        # LDA topic modeling
+│   └── 4.2. BERTopic Modelling.ipynb   # BERTopic modeling
+├── reviews_core/                       # Core Python modules for the project
+│   ├── __init__.py                     # Package initialization
+│   ├── scraper.py                      # Google Play Store scraper
+│   ├── cleaning.py                     # Data cleaning and preprocessing
+│   ├── apply_bertopic.py               # Apply BERTopic to new data
+│   ├── update_final_dataframes.py      # Update aggregated data
+│   ├── word_cloud.py                   # Word cloud generation
+│   └── get_sample.py                   # Sample review extraction
+├── app.py                              # Main Streamlit dashboard application
+├── run_pipeline.py                     # Script to run the full data pipeline
+├── requirements.txt                    # Python dependencies
+└── README.md                           # Project documentation
+
 ```
 
 ---
@@ -225,7 +209,8 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 ## 🎯 Installation
 
 ```bash
-git clone https://github.com/yourusername/banking-app-reviews.git
+git clone https://github.com/beastNico
+DIGITAL-BANKING-DASHBOARD.git
 cd banking-app-reviews
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -297,27 +282,3 @@ python run_pipeline.py
 * Perfect core payment functions for digital banks
 * Focus on investments and security for all banks
 * Customer service response optimization
-
----
-
-## 🔗 Related Projects
-
-* [google-play-scraper](https://github.com/JoMingyu/google-play-scraper)
-* [BERTopic](https://github.com/MaartenGr/BERTopic)
-* [Streamlit](https://streamlit.io/)
-* [VADER Sentiment](https://github.com/cjhutto/vaderSentiment)
-* [UMAP](https://github.com/lmcinnes/umap)
-
----
-
-## 📋 Changelog
-
-### v1.0.0
-
-* 826,905 raw reviews collected
-* Data cleaning and preprocessing implemented
-* LDA and BERTopic modeling applied
-* Interactive Streamlit dashboard with 4 main views
-* Optional OpenAI-powered insights integrated
-
-```
