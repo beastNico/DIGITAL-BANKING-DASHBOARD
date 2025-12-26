@@ -43,7 +43,7 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ## 🏗️ System Architecture
 
-![System Architecture](System Architecture.png)
+![System Architecture](./System Architecture.png)
 
 ---
 
