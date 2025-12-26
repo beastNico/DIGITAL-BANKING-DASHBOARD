@@ -41,14 +41,19 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ---
 
+## 🏗️ System Architecture
+
+![System Architecture](System Architecture.png)
+
+---
 
 ## 🔍 Data Source
 
-- **Source:** Google Play Store reviews  
-- **Scope:** Six UK banking apps — Barclays, HSBC, Lloyds, Monzo, Revolut, Santander  
-- **Collection Method:** Automated scraping using `google_play_scraper`  
-- **Total Reviews Collected:** 826,905 unique reviews (initial scrape)  
-- **Time Period:** Early history through December 2025  
+- **Source:** Google Play Store reviews
+- **Scope:** Six UK banking apps — Barclays, HSBC, Lloyds, Monzo, Revolut, Santander
+- **Collection Method:** Automated scraping using `google_play_scraper`
+- **Total Reviews Collected:** 826,905 unique reviews (initial scrape)
+- **Time Period:** Early history through December 2025
 - **Fields Collected:** `app_name`, `score`, `review_text`, `review_date`, `thumbs_up`, `reply`, `reply_date`, `app_version`
 
 ---
@@ -106,30 +111,30 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 **General Model (7 topics):**
 
-1. Cards & Payments  
-2. Customer Service  
-3. Updates & Access  
-4. Mobile Payments  
-5. Security & Travel  
-6. Account Management  
+1. Cards & Payments
+2. Customer Service
+3. Updates & Access
+4. Mobile Payments
+5. Security & Travel
+6. Account Management
 7. Usability & Transfers
 
 **Negative Reviews Model (6 topics):**
 
-1. Login & Security  
-2. Customer Support  
-3. Technical Issues  
-4. Payments & Cards  
-5. Interface Problems  
+1. Login & Security
+2. Customer Support
+3. Technical Issues
+4. Payments & Cards
+5. Interface Problems
 6. Mobile Payment Issues
 
 **Positive Reviews Model (6 topics):**
 
-1. Currency & Management  
-2. Transfers & Payments  
-3. Support & Updates  
-4. Security & Service  
-5. Features & Travel  
+1. Currency & Management
+2. Transfers & Payments
+3. Support & Updates
+4. Security & Service
+5. Features & Travel
 6. Usability
 
 **Insights from LDA:**
@@ -144,9 +149,9 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 **Model Configuration:**
 
-- **Embeddings:** Sentence-BERT (`all-MiniLM-L6-v2`)  
-- **Dimensionality Reduction:** UMAP (n_components=5, min_dist=0.1)  
-- **Clustering:** HDBSCAN (min_cluster_size=150)  
+- **Embeddings:** Sentence-BERT (`all-MiniLM-L6-v2`)
+- **Dimensionality Reduction:** UMAP (n_components=5, min_dist=0.1)
+- **Clustering:** HDBSCAN (min_cluster_size=150)
 - **Training Time:** ~85 minutes (61 min embeddings, 24 min clustering)
 
 **Final Topics (20 topics with custom labels):**
@@ -162,10 +167,10 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 **Macro Categories (5 groups):**
 
-1. User Experience (27.9%)  
-2. Products (8.8%)  
-3. Customer Service (5.0%)  
-4. Performance (13.3%)  
+1. User Experience (27.9%)
+2. Products (8.8%)
+3. Customer Service (5.0%)
+4. Performance (13.3%)
 5. Core Banking (34.7%)
 
 **Advantages of BERTopic over LDA:**
@@ -292,4 +297,3 @@ streamlit run app.py
 
 ```bash
 python run_pipeline.py
-```
