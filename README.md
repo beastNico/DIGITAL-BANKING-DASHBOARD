@@ -258,21 +258,18 @@ The methodology combines **text analytics**, **topic modeling**, and **interacti
 
 ```bash
 git clone https://github.com/beastNico/DIGITAL-BANKING-DASHBOARD.git
-```
 
-```
 cd DIGITAL-BANKING-DASHBOARD
 ```
 
 ```
-python -m venv venv
-```
+# Create virtual environment
+python -m venv hrvenv
 
-```
-source venv/bin/activate  # Windows: venv\Scripts\activate
-```
+# Activate environment (Windows)
+hrvenv\Scripts\activate
 
-```
+# Install dependencies
 pip install -r requirements.txt
 ```
 
