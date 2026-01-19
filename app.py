@@ -259,9 +259,11 @@ with app_tab:
         df_f.rename(columns={"period_month": "period"})
             .assign(period=lambda d: pd.to_datetime(d["period"]))
             .assign(wscore=lambda d: d["avg_score"] * d["n_reviews"])
-            .groupby([pd.Grouper(key="period", freq=freq), "app"], as_index=False)
+            .set_index("period")
+            .groupby([pd.Grouper(freq=freq), "app"])
             .agg(n_reviews=("n_reviews", "sum"),
                 wscore=("wscore", "sum"))
+            .reset_index()
             .assign(avg_score=lambda d: d["wscore"] / d["n_reviews"])
             .drop(columns="wscore")
     )
@@ -564,6 +566,11 @@ with topics_tab:
                 hovertext=hover_text,
                 hoverinfo='text'
             ))
+        
+        # Check if there's data to display
+        if not data_for_chart:
+            st.info(f"No reviews found for {macro} in the selected filters.")
+            continue
         
         # find max total to adjust x-axis
         max_total = max(item["total_percentage"] for item in data_for_chart)
